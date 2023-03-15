@@ -1,0 +1,41 @@
+{% extends "./base.html" %}
+{% block reviews %}
+    <div class="d-flex justify-content-center p-3 gap-5">
+        <div id="carouselExampleAutoplaying" class="carousel slide w-75 h-50 text-light p-3 border border-light-1" style="background-color: rgb(41, 11, 11);" data-bs-ride="carousel">
+            <h2>New Reviews</h2>
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://cdn.oneesports.gg/cdn-data/2022/12/MW2_Season2_Artwork.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://cdn1.epicgames.com/offer/e97659b501af4e3981d5430dad170911/EGS_HogwartsLegacyDigitalDeluxeEdition_AvalancheSoftware_Editions_S1_2560x1440-65f2cce001ab1893cca57f48aeb25196" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://cdn.mos.cms.futurecdn.net/58iTGPwQrzqNeZTd59oQc3.jpg" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+            </div>
+                <div class="text-light d-flex flex-column gap-4">
+                    <h3>Coming Soon</h3>
+                    <div>
+                        <img class="border border-light-1" style="width: 14vw; height: 18vw;" src="https://buycheapplaycheap.com/wp-content/uploads/2023/02/Atomic-Heart-Buy-Cheap-Play-Cheap-Cover-Art.jpg" alt="">
+                    </div>
+                    <div>
+                        <img class="border border-light-1" style="width: 14vw; height: 18vw;" src="https://i0.wp.com/news.xbox.com/en-us/wp-content/uploads/sites/2/2023/02/wo_long_dynasty-74db052518c00bbf8a9b.jpg?fit=720%2C1080&ssl=1" alt="">
+                    </div>
+                </div>
+    </div>
+{% endblock reviews %}
