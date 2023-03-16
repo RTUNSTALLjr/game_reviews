@@ -6,13 +6,13 @@ import re
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
 
-db = ''
+db = 'reviews_db'
 
 class User:
     def __init__(self, data):
         self.id = data['id']
-        self.first_name = data['first_name']
-        self.last_name = data['last_name']
+        self.username = data['username']
+        self.date_of_birth = data['date_of_birth']
         self.email = data['email']
         self.password = data['password']
         self.created_at = data['created_at']
@@ -24,8 +24,8 @@ class User:
             return False
         form_data = cls.search_form(data)
         query = """
-        INSERT INTO users (first_name, last_name, email, password)
-        VALUES ( %(first_name)s, %(last_name)s, %(email)s, %(password)s)
+        INSERT INTO users (username, date_of_birth, email, password)
+        VALUES ( %(username)s, %(date_of_birth)s, %(email)s, %(password)s)
         ;"""
         user_id = connectToMySQL(db).query_db(query, form_data)
         session['user_id'] = user_id
@@ -70,31 +70,31 @@ class User:
     def validate_user(data):
         EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
         is_valid = True
-        if len(data['first_name']) < 2:
-            flash('First name must be at least 2 characters long.', 'register')
+        if len(data['username']) < 5:
+            flash('Username must be at least 5 characters long.', 'username')
             is_valid = False
-        if len(data['last_name']) < 2:
-            flash('Last name must be at least 2 characters long.', 'register')
+        if len(data['date_of_birth']) < 1:
+            flash('Date of Birth is required.', 'dob')
             is_valid = False
         if len(data['password']) < 8:
-            flash('Password must be at least 8 characters long.', 'register')
+            flash('Password must be at least 8 characters long.', 'password')
             is_valid = False
         if not EMAIL_REGEX.match(data['email']):
-            flash("Invalid email address!", 'register')
+            flash("Invalid email address!", 'email')
             is_valid = False
         if User.get_user_email(data['email'].lower()):
-            flash("Email is already registered.", 'register')
+            flash("Email is already registered.", 'email')
             is_valid = False
         if data['password'] != data['confirm_password']:
-            flash("Passwords do not match", 'register')
+            flash("Passwords do not match", 'confirm')
             is_valid = False
         return is_valid
     
     @staticmethod
     def search_form(data):
         form_data = {}
-        form_data['first_name'] = data['first_name']
-        form_data['last_name'] = data['last_name']
+        form_data['username'] = data['username']
+        form_data['date_of_birth'] = data['date_of_birth']
         form_data['password'] = bcrypt.generate_password_hash(data['password'])
         form_data['email'] = data['email'].lower()
         return form_data

@@ -1,4 +1,67 @@
 {% extends "./base.html" %}
 {% block reviews %}
-    <h1>Register</h1>
+    <div id="container" class="d-flex justify-content-center">
+        <!-- #REGISTER# -->
+        <div id="register" class="text-light border border-light-1 d-flex flex-column align-items-center" style="width: 35%; padding: 20px; background-color: rgb(41, 11, 11); border-radius: 3%; ">
+            <h2 style="margin-bottom: 25px;">Register</h2>
+            <form class="d-flex flex-column mx-auto" style="width: 80%;" action="/process" method="post">
+                <div class="mb-3">
+                    <label for="username" class="m-2">Username:</label>
+                {% with messages = get_flashed_messages(category_filter=['username']) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                        <p class="text-danger"> {{message}} </p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                        <input type="text" class="form-control" id="username" name="username">
+                </div>
+                <div class="mb-3">
+                    <label for="date_of_birth" class="m-2">Date of Birth:</label>
+                {% with messages = get_flashed_messages(category_filter=['dob']) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                        <p class="text-danger"> {{message}} </p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                        <input type="date" class="form-control" id="date_of_birth" name="date_of_birth">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="m-2">Email:</label>
+                {% with messages = get_flashed_messages(category_filter=['email']) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                        <p class="text-danger"> {{message}} </p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                        <input type="email" class="form-control" id="email" name="email">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="m-2">Password:</label>
+                {% with messages = get_flashed_messages(category_filter=['password']) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                        <p class="text-danger"> {{message}} </p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                        <input type="password" class="form-control" id="password" name="password">
+                </div>
+                <div class="mb-3">
+                    <label for="confirm_password" class="m-2">Confirm Password:</label>
+                {% with messages = get_flashed_messages(category_filter=['confirm']) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                        <p class="text-danger"> {{message}} </p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+                </div>
+                <button type="submit" class="btn btn-primary my-2 w-25">Register</button>
+                <p>Already have an account ? <a href="/login">Login</a></p>
+            </form>
+        </div>
 {% endblock reviews %}

@@ -1,4 +1,29 @@
 {% extends "./base.html" %}
 {% block reviews %}
-    <h1>Login</h1>
+            <!-- #LOGIN# -->
+            <div id="login" class="text-light m-4 border border-light-1 w-25 h-50 mx-auto" style="padding: 20px; background-color: rgb(41, 11, 11); border-radius: 3%; ">
+                <h2 style="margin-bottom: 25px;">Login</h2>
+                <div style="background-color: rgb(26, 26, 26);">
+                    {% with messages = get_flashed_messages(category_filter=['login']) %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <p class="text-danger"> {{message}} </p>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </div>
+                <form action="/login_user" method="post">
+                    <div class="mb-3">
+                        <label for="inputEmail" class="m-2">Email:</label>
+                            <input type="email" class="form-control" id="inputEmail" name="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputPassword" class="m-2">Password:</label>
+                            <input type="password" class="form-control" id="inputPassword" name="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary my-2">Login</button>
+                    <p>New user ? <a href="/register">Register</a></p>
+                </form>
+            </div>
+        </div>
 {% endblock reviews %}

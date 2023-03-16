@@ -18,3 +18,23 @@ def one_review():
 @app.route('/media')
 def media():
     return render_template('media.html')
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/login_user', methods=['POST'])
+def login_user():
+    if user.User.login(request.form):
+        return redirect('/')
+    return redirect('/login')
+
+@app.route('/register')
+def register():
+    return render_template('register.html')
+
+@app.route('/process', methods=['POST'])
+def process_registration():
+    if user.User.register(request.form):
+        return redirect('/')
+    return redirect('/register')
