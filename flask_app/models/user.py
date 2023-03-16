@@ -1,6 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import app
-# from flask_app.models import review
+from flask_app.models import review
 from flask import flash, session
 import re 
 from flask_bcrypt import Bcrypt

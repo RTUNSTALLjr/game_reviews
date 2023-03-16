@@ -4,7 +4,9 @@
         <div id="carouselExampleAutoplaying" class="carousel slide h-50 text-light p-3 border border-light-1" style="width: 70%; background-color: rgb(41, 11, 11);" data-bs-ride="carousel">
             <div class="d-flex align-items-center gap-5">
                 <h2>New Reviews</h2>
+                {% if session['user_id'] == 1 %}
                 <a href="#">Add Review</a>
+                {% endif %}
             </div>
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -34,7 +36,9 @@
                 <div class="text-light d-flex flex-column gap-4">
                     <div>
                         <h3>Coming Soon</h3>
+                        {% if session['user_id'] == 1 %}
                         <a href="#">Add Upcoming</a>
+                        {% endif %}
                     </div>
                     <div>
                         <img class="border border-light-1" style="width: 12vw; height: 16vw;" src="https://buycheapplaycheap.com/wp-content/uploads/2023/02/Atomic-Heart-Buy-Cheap-Play-Cheap-Cover-Art.jpg" alt="">
