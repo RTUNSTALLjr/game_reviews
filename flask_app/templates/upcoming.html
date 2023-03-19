@@ -1,0 +1,20 @@
+{% extends './base.html' %}
+{% block reviews %}
+    <div class="text-light w-25 mx-auto d-flex flex-column justify-content-center p-3 border border-light-1" style="background-color: rgb(41, 11, 11); border-radius: 15px;">
+        <form action="/upload" method="POST">
+            <h1>Add Upcoming Review</h1>
+            <p>Image URL</p>
+            <div>
+                {% with messages = get_flashed_messages(category_filter=['upcoming']) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="text-danger"> {{message}} </p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <input type="text" name="image">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+{% endblock reviews %}

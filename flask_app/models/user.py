@@ -1,6 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import app
-from flask_app.models import review
+from flask_app.models import review, upcoming, comment
 from flask import flash, session
 import re 
 from flask_bcrypt import Bcrypt
@@ -43,7 +43,20 @@ class User:
         if results:
             results = cls(results[0])
         return results
-    
+
+    @classmethod
+    def get_user_username(cls, username):
+        data = {'username' : username}
+        query = """
+        SELECT *
+        FROM users
+        WHERE username = %(username)s
+        ;"""
+        results = connectToMySQL(db).query_db(query, data)
+        if results:
+            results = cls(results[0])
+        return results
+
     @classmethod
     def get_user_id(cls, data):
         query = """
@@ -72,6 +85,9 @@ class User:
         is_valid = True
         if len(data['username']) < 5:
             flash('Username must be at least 5 characters long.', 'username')
+            is_valid = False
+        if User.get_user_username(data['username'].lower()):
+            flash("Username is already in use.", 'username')
             is_valid = False
         if len(data['date_of_birth']) < 1:
             flash('Date of Birth is required.', 'dob')

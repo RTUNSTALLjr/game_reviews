@@ -1,11 +1,11 @@
 {% extends "./base.html" %}
 {% block reviews %}
     <div class="d-flex justify-content-center p-3 gap-5">
-        <div id="carouselExampleAutoplaying" class="carousel slide h-50 text-light p-3 border border-light-1" style="width: 70%; background-color: rgb(41, 11, 11);" data-bs-ride="carousel">
+        <div id="carouselExampleAutoplaying" class="carousel slide h-50 text-light p-3 border border-light-1" style="width: 70%; background-color: rgb(41, 11, 11); border-radius: 15px;" data-bs-ride="carousel">
             <div class="d-flex align-items-center gap-5">
                 <h2>New Reviews</h2>
                 {% if session['user_id'] == 1 %}
-                <a href="#">Add Review</a>
+                <a href="/review_form">Add Review</a>
                 {% endif %}
             </div>
             <div class="carousel-indicators">
@@ -37,15 +37,17 @@
                     <div>
                         <h3>Coming Soon</h3>
                         {% if session['user_id'] == 1 %}
-                        <a href="#">Add Upcoming</a>
+                        <a href="/upcoming">Add Upcoming</a>
                         {% endif %}
                     </div>
-                    <div>
-                        <img class="border border-light-1" style="width: 12vw; height: 16vw;" src="https://buycheapplaycheap.com/wp-content/uploads/2023/02/Atomic-Heart-Buy-Cheap-Play-Cheap-Cover-Art.jpg" alt="">
-                    </div>
-                    <div>
-                        <img class="border border-light-1" style="width: 12vw; height: 16vw;" src="https://i0.wp.com/news.xbox.com/en-us/wp-content/uploads/sites/2/2023/02/wo_long_dynasty-74db052518c00bbf8a9b.jpg?fit=720%2C1080&ssl=1" alt="">
-                    </div>
+                    {% for upcoming in games %}
+                        <div>
+                            <img class="border border-light-1" style="width: 12vw; height: 16vw;" src="{{upcoming.image}}" alt="">
+                            {% if session['user_id'] == 1 %}
+                            <a class="btn btn-danger" href="/delete_upload/{{upcoming.id}}">Delete</a>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
                 </div>
     </div>
 {% endblock reviews %}
