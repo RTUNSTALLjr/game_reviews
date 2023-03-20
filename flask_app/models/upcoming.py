@@ -19,6 +19,7 @@ class Upcoming:
     def get_all_upcoming(cls):
         query = """
         SELECT * FROM upcoming
+        LIMIT 2
         ;"""
         results = connectToMySQL(db).query_db(query)
         upcoming_list = []
