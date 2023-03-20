@@ -32,6 +32,18 @@ class Review:
         return connectToMySQL(db).query_db(query, data)
 
     @classmethod
+    def edit_review(cls, data):
+        if not cls.validate_review(data):
+            return False
+        query = """
+        UPDATE reviews
+        SET title = %(title)s, image = %(image)s, score = %(score)s, description = %(description)s, joys = %(joys)s, no_joys = %(no_joys)s
+        WHERE id = %(id)s
+        ;"""
+        connectToMySQL(db).query_db(query, data)
+        return True
+
+    @classmethod
     def all_reviews(cls):
         query = """
         SELECT * FROM reviews
@@ -42,6 +54,14 @@ class Review:
             review = cls(row)
             review_list.append(review)
         return review_list
+
+    @classmethod
+    def review_by_id(cls, data):
+        query = """
+        SELECT * FROM reviews
+        WHERE reviews.id = %(id)s
+        ;"""
+        results = connectToMySQL(db).query_db(query, data)
 
     @staticmethod
     def validate_review(data):

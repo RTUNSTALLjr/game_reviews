@@ -1,0 +1,75 @@
+{% extends './base.html' %}
+{% block reviews %}
+<div class="text-light w-50 mx-auto d-flex flex-column justify-content-center p-3 border border-light-1" style="background-color: rgb(41, 11, 11); border-radius: 15px;">
+    <h1>Edit Review</h1>
+        <form action="/add_review" method="POST" class="d-flex flex-column">
+            <div class="d-flex flex-column mb-2">
+                <label for="title">Game Title:</label>
+                {% with messages = get_flashed_messages(category_filter=['title']) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="text-danger"> {{message}} </p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <input type="text" name="title" id="title">
+            </div>
+            <div class="d-flex flex-column mb-2">
+                <label for="image">Image URL:</label>
+                {% with messages = get_flashed_messages(category_filter=['review_image']) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="text-danger"> {{message}} </p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <input type="text" name="image" id="image">
+            </div>
+            <div class="d-flex flex-column w-25 mb-2">
+                <label for="score">Score:</label>
+                {% with messages = get_flashed_messages(category_filter=['score']) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="text-danger"> {{message}} </p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <input type="number" name="score" id="score">
+            </div>
+            <div class="d-flex flex-column mb-2">
+                <label for="description">Review:</label>
+                {% with messages = get_flashed_messages(category_filter=['review']) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="text-danger"> {{message}} </p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <textarea name="description" id="description" cols="30" rows="5"></textarea>
+            </div>
+            <div class="d-flex flex-column mb-2">
+                <label for="joys">Joys:</label>
+                {% with messages = get_flashed_messages(category_filter=['joys']) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="text-danger"> {{message}} </p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <textarea name="joys" id="joys" cols="30" rows="5"></textarea>
+            </div>
+            <div class="d-flex flex-column mb-2">
+                <label for="no_joys">No Joys:</label>
+                {% with messages = get_flashed_messages(category_filter=['no_joys']) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="text-danger"> {{message}} </p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <textarea name="no_joys" id="no_joys" cols="30" rows="5"></textarea>
+            </div>
+            <button class="w-25" type="submit">Submit</button>
+        </form>
+    </div>
+{% endblock reviews %}
