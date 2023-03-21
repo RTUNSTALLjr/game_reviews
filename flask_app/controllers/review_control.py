@@ -8,9 +8,11 @@ def dashboard():
     if "user_id" in session:
         user_info = user.User.get_user_id({'id' : session['user_id']})
         upcoming_list = upcoming.Upcoming.get_all_upcoming()
-        return render_template('dashboard.html',user = user_info, games= upcoming_list)
+        new_reviews = review.Review.top_reviews()
+        return render_template('dashboard.html',user = user_info, games= upcoming_list, new = new_reviews)
     upcoming_list = upcoming.Upcoming.get_all_upcoming()
-    return render_template('dashboard.html')
+    new_reviews = review.Review.top_reviews()
+    return render_template('dashboard.html', games = upcoming_list,new = new_reviews)
 
 @app.route('/review_form')
 def review_form():

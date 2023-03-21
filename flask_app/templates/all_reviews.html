@@ -3,7 +3,7 @@
 <div class="d-flex flex-column align-items-center text-light">
     <h1>All Reviews</h1>
     {% for games in review %}
-    <div class="w-50 mx-auto align-items-center d-flex p-3 border border-light-1 justify-content-between" style="background-color: rgb(41, 11, 11); border-radius: 15px;">
+    <div class="w-50 mx-auto mb-2 align-items-center d-flex p-3 border border-light-1 justify-content-between" style="background-color: rgb(41, 11, 11); border-radius: 15px;">
         <div class="d-flex align-items-center gap-5">
             <a href="/one_review/{{games.id}}"><img style="width: 10vw; height: 12vh;" src="{{games.image}}" alt=""></a>
             <a href="/one_review/{{games.id}}"><h2>{{games.title}}</h2></a>

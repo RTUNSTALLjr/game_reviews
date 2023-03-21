@@ -55,6 +55,7 @@ class Review:
     def all_reviews(cls):
         query = """
         SELECT * FROM reviews
+        ORDER BY created_at DESC
         ;"""
         results = connectToMySQL(db).query_db(query)
         review_list = []
@@ -62,6 +63,21 @@ class Review:
             review = cls(row)
             review_list.append(review)
         return review_list
+
+    @classmethod
+    def top_reviews(cls):
+        query = """
+        SELECT * FROM reviews
+        ORDER BY created_at DESC
+        LIMIT 3
+        ;"""
+        results = connectToMySQL(db).query_db(query)
+        review_list = []
+        if results:
+            for row in results:
+                review = cls(row)
+                review_list.append(review)
+            return review_list
 
     @classmethod
     def review_by_id(cls, data):
