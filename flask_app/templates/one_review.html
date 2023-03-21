@@ -1,4 +1,37 @@
 {% extends './base.html' %}
 {% block reviews %}
-    <h1>One Review</h1>
+    <div class="align-items-center d-flex p-3 gap-2 justify-content-center">
+        <img class="border border-light-1" style="width: 60vw; height: 60vh; border-radius: 50px; margin-left: 40px;" src="{{review.image}}" alt="">
+        {% if review.score > 3 %}
+        <div class="text-light bg-success border border-light-1 p-3" style="margin-left: -250px; margin-bottom: -250px; width: 20vw; height: 15vh;">
+            <h3>{{review.title}}</h3>
+            <h3 >Ciphers Score: {{review.score}}</h3>
+        </div>
+        {% endif %}
+        {% if review.score < 3 and review.score > 2.5 %}
+        <div class="text-light bg-warning border border-light-1 p-3" style="margin-left: -250px; margin-bottom: -250px; width: 20vw; height: 15vh;">
+            <h3>{{review.title}}</h3>
+            <h3 >Ciphers Score: {{review.score}}</h3>
+        </div>
+        {% endif %}
+        {% if review.score < 2.5 %}
+        <div class="text-light bg-danger border border-light-1 p-3" style="margin-left: -250px; margin-bottom: -250px; width: 20vw; height: 15vh;">
+            <h3>{{review.title}}</h3>
+            <h3 >Ciphers Score: {{review.score}}</h3>
+        </div>
+        {% endif %}
+    </div>
+    <div class="p-3 d-flex flex-column align-items-center w-50 border border-light-1 text-light mx-auto" style="background-color: rgb(41, 11, 11); border-radius: 15px; margin-top: -25px;">
+        <p>{{review.description}}</p>
+        <p>Joys | {{review.joys}}</p>
+        <p>No Joys | {{review.no_joys}}</p>
+    </div>
+    <div class="d-flex flex-column align-items-center">
+        <div class="p-3 mt-2 d-flex flex-column align-items-center justify-content-center w-25 border border-light-1 text-light" style="background-color: rgb(41, 11, 11); height: 150px;">
+            <p>Critic Score API coming soon</p>
+        </div>
+        <div class="p-3 mt-2 d-flex flex-column align-items-center justify-content-center w-25 border border-light-1 text-light" style="background-color: rgb(41, 11, 11); height: 150px;">
+            <p>User comments and ratings coming soon</p>
+        </div>
+    </div>
 {% endblock reviews %}

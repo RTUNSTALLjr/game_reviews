@@ -44,6 +44,14 @@ class Review:
         return True
 
     @classmethod
+    def delete_review(cls, data):
+        query = """
+        DELETE FROM reviews
+        WHERE id = %(id)s
+        ;"""
+        connectToMySQL(db).query_db(query, data)
+
+    @classmethod
     def all_reviews(cls):
         query = """
         SELECT * FROM reviews
@@ -58,10 +66,14 @@ class Review:
     @classmethod
     def review_by_id(cls, data):
         query = """
-        SELECT * FROM reviews
-        WHERE reviews.id = %(id)s
+        SELECT *
+        FROM reviews
+        WHERE id = %(id)s
         ;"""
         results = connectToMySQL(db).query_db(query, data)
+        if results:
+            results = cls(results[0])
+        return results
 
     @staticmethod
     def validate_review(data):
