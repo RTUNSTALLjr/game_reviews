@@ -8,13 +8,13 @@
             <h3 >Ciphers Score: {{review.score}}</h3>
         </div>
         {% endif %}
-        {% if review.score <= 3 and review.score > 2.5 %}
+        {% if review.score <= 3 and review.score > 2.1 %}
         <div class="text-light bg-warning border border-light-1 p-3" style="margin-left: -250px; margin-bottom: -250px; width: 20vw; height: 15vh;">
             <h3>{{review.title}}</h3>
             <h3 >Ciphers Score: {{review.score}}</h3>
         </div>
         {% endif %}
-        {% if review.score < 2.5 %}
+        {% if review.score < 2.1 %}
         <div class="text-light bg-danger border border-light-1 p-3" style="margin-left: -250px; margin-bottom: -250px; width: 20vw; height: 15vh;">
             <h3>{{review.title}}</h3>
             <h3 >Ciphers Score: {{review.score}}</h3>
